@@ -17,6 +17,9 @@ set(iris['species'])
 #data spesies
 iris.head()
 
+#perbandingan data dari grafig
+sn.pairplot(iris, hue='species')
+
 #perhitungan svm
 clf = svm.SVC(kernel='linear')
 x = iris[['sepalWidth','petalWidth']]
