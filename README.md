@@ -1,7 +1,7 @@
 # ---------------------PROGRAM---------------------
 # data 1.000
 # kata alai
-# GUI
+# GUI ok
 # memastikan perhitungan sama seperti program
 # accurasi (normalisasi true / false)
 # recall (micro / macro / weighted)
