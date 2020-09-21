@@ -1,5 +1,5 @@
 # ---------------------PROGRAM---------------------
-# data 1.000
+# data 2.000
 # kata alai
 # GUI ok
 # memastikan perhitungan sama seperti program
