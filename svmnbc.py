@@ -17,7 +17,7 @@ from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 indo = stopwords.words('indonesian')
 
 #preprosesing
-dataset = pd.read_csv('training_gojek.csv')
+dataset = pd.read_csv('training_gojek_yy.csv')
 corpus = []
 for i in range(0, len(dataset)):
     #re = hapus / rubah
@@ -43,13 +43,14 @@ class Analis:
         x_train_tfidf=self.tf_vectorizer.fit_transform(articles).toarray()
         x_test_tfidf=self.tf_vectorizer.transform(articles)
 
-        self.X_train, self.X_test, self.y_train, self.y_test=train_test_split(x_train_tfidf,labels,test_size = training,random_state = 0)
+        self.X_train, self.X_test, self.y_train, self.y_test=train_test_split(x_train_tfidf,labels,test_size = self.training,random_state = 0)
                 
     def svm(self):                
         svm_hasil = []
         kernel=["linear","poly","sigmoid","rbf"]
+         
         for i in kernel:
-            classifierSVM = SVC(kernel = i, random_state = 0, gamma='auto')
+            classifierSVM = SVC(kernel = i, degree=8, coef0=1.0, probability=True,  gamma='auto')
             classifierSVM.fit(self.X_train, self.y_train)
             y_pred_SVM = classifierSVM.predict(self.X_test)
             svm_hasil.append(accuracy_score(self.y_test, y_pred_SVM, normalize=True))
@@ -78,7 +79,7 @@ class Analis:
         #svm
         kernel=["linear","poly","sigmoid","rbf"]
         for i in kernel:            
-            psvm = SVC(kernel = i, random_state = 0, gamma='auto')
+            psvm = SVC(kernel = i, degree=8, coef0=1.0,probability=True, gamma='auto')
             psvm.fit(self.X_train, self.y_train)
             pred_eks.append(psvm.predict(xx))
         
